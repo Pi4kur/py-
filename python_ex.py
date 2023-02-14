@@ -209,3 +209,99 @@ numbers2 = [5, 6, 13, 20] #[int(c) for c in input().split()]
 # вызываем функцию 
 print(merge(numbers1, numbers2))
 
+
+# объявление функции
+def is_palindrome(text):
+    #delete all unwanted chars
+    print(text)
+    
+    text1="".join(c for c in text if c.isalpha())
+    print(text1)
+    
+    text1 = text1.casefold()
+    print(text1)
+    
+    text_list_1 = list(text1)
+    print(text_list_1)
+    
+    if text_list_1 == text_list_1[::-1]:
+        return True
+    else:
+        return False
+
+# считываем данные
+
+txt = 'Карман, жена, но Какашкин - вор! О, Ковалева... Вела во коровник. Ша! Как она нежна! рак...' #input()
+
+# вызываем функцию
+print(is_palindrome(txt))
+
+
+def is_correct_bracket(text):
+    counter = 0
+    for c in text:
+        if c == ')' and counter == 0:
+            return False
+        if c == ')' and counter > 0:
+            counter -= 1
+        if c == '(':
+            counter += 1
+    return not counter
+
+
+
+
+def convert_to_python_case(text):
+    index_of_first_upper = 0
+    result_string = ''
+    for i in range(len(text)):
+        if text[i].isupper():
+            if i == index_of_first_upper:
+                continue
+            elif i > index_of_first_upper:
+                if index_of_first_upper == 0:
+                    result_string = text[:i]
+                else:
+                    result_string = result_string + '_' + text[index_of_first_upper:i]
+                
+                index_of_first_upper = i
+    
+    #last word
+    result_string = result_string + '_' + text[index_of_first_upper:]
+    result_string = result_string.casefold()
+    return result_string
+
+txt = 'MyMethodThatDoSomething'
+
+print(convert_to_python_case(txt))
+
+# Exam 14
+def draw_triangle():
+    for i in range(8):
+        n_stars = i * 2 + 1
+        n_whitespace = (15 - n_stars) // 2
+        print(' ' * n_whitespace + '*' * n_stars + ' ' * n_whitespace)
+        
+
+#draw_triangle()
+
+list_1 = ['один', 'два', 'три', 'четыре', 'пять', 'шесть', 'семь', 'восемь', 'девять', 'десять']
+list_11 = ['одиннадцать', 'двенадцать', 'тринадцать', 'четырнадцать', 'пятнадцать', 'шестнадцать', 'семнадцать', 'восемнадцать', 'девятнадцать']
+list_21 = ['двадцать', 'тридцать', 'сорок', 'пятьдесят', 'шестьдесят', 'семьдесят', 'восемьдесят', 'девяносто']
+
+def is_magic(date):
+    list_num = date.split('.')
+    print(*list_num)
+    print(list_num[2][2:5])
+    return int(list_num[0]) * int(list_num[1]) == int(list_num[2][2:5])
+
+#print(is_magic('10.06.1960'))
+#print(is_magic('11.06.1960'))
+text = 'Jackdaws love my big sphinx of quartz'
+string = ''.join(text.split())
+print(string)
+print(set(text))
+print(set(string))
+print(len(set(string)))
+
+##########################

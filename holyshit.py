@@ -1,21 +1,39 @@
-# объявление функции
-def is_palindrome(text):
-    #delete all unwanted chars
-    print(text)
-    text1="".join(c for c in text if c.isalpha())
-    print(text1)
-    text1 = text1.casefold()
-    print(text1)
-    text_list_1 = list(text1)
-    print(text_list_1)
-    if text_list_1 == text_list_1[::-1]:
+from random import *
+
+random_num = randint(1,100)
+counter = 1
+
+def is_valid(text):
+    return text.isdigit() and 0 < int(text) < 101
+
+def compare_nums(user_num, random_num):
+    if user_num < random_num:
+        print('Ваше число меньше загаданного, попробуйте еще разок')
+        return True
+    elif user_num > random_num:
+        print('Ваше число больше загаданного, попробуйте еще разок')
         return True
     else:
+        print('Вы угадали, поздравляем!')
+        print('Число попыток:', counter)
         return False
 
-# считываем данные
 
-txt = 'Карман, жена, но Какашкин - вор! О, Ковалева... Вела во коровник. Ша! Как она нежна! рак...' #input()
+# Start game
+print('Добро пожаловать в числовую угадайку')
 
-# вызываем функцию
-print(is_palindrome(txt))
+flag = True # not guess yet
+while flag:
+    text = input('Введите число от 1 до 100: ')
+    n = 0
+    if not is_valid(text):
+        print('А может быть все-таки введем целое число от 1 до 100?')
+        counter += 1
+        continue
+    else:
+        n = int(text)
+    flag = compare_nums(n,random_num)
+    counter += 1
+
+print('Спасибо, что играли в числовую угадайку. Еще увидимся...')    
+
