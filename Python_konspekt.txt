@@ -18,6 +18,21 @@ split()
 join() --> s = ' '.join(words)
 
 
+Функция ord and chr
+
+num1 = ord('A')
+num2 = ord('B')
+num3 = ord('a') 
+print(num1, num2, num3)
+65 66 97
+
+chr1 = chr(65)
+chr2 = chr(75)
+chr3 = chr(110) 
+print(chr1, chr2, chr3)
+A K n
+
+
 *** insert() ***
 
 Метод insert() позволяет вставлять значение в список в заданной позиции. В него передается два аргумента:
