@@ -315,6 +315,7 @@ print(bin(dec))
 
 ########## Repeat ###########
 # mass, height = float(input('Mass: ')), float(input('Height: '))
+mass, height = 80, 1.76
 IMT = mass / height ** 2
 if IMT < 18.5:
     print('Недостаточная масса')
