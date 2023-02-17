@@ -305,3 +305,146 @@ print(set(string))
 print(len(set(string)))
 
 ##########################
+# BOH - Bin Oct Hex
+
+hex = '1AF2'
+dec = 513
+
+#dec = int(hex, 16)
+print(bin(dec))
+
+########## Repeat ###########
+# mass, height = float(input('Mass: ')), float(input('Height: '))
+IMT = mass / height ** 2
+if IMT < 18.5:
+    print('Недостаточная масса')
+elif IMT > 25:
+    print('Избыточная масса')
+else:
+    print('Оптимальная масса')
+
+#######
+
+ANIMALS = ["Дракон", "Змея", "Лошадь", "Овца", "Обезьяна", "Петух", "Собака", "Свинья", "Крыса", "Бык", "Тигр", "Заяц"]
+year = int(input())
+print(ANIMALS[abs(year - 2000) % 12])
+
+############
+
+fake_num = input()
+if len(fake_num) == 5:
+    print(fake_num[::-1].lstrip('0'))
+elif len(fake_num) == 6:
+    print((fake_num[0] + fake_num[-1:-6:-1]).lstrip('0'))
+
+###################
+
+# fake_num = input()
+
+text = '100000000'
+text_list = list(text)
+print(text_list)
+
+num_of_com = len(text_list)
+
+
+def SAC(txt):
+    lst = list()
+    while len(txt) > 3:
+        lst.append(txt[-3:])
+        txt = txt[:-3]
+    lst.append(txt)
+    lst.reverse()
+    return ','.join(lst)
+
+
+#print(SAC(text))
+
+# num have to be digit 
+num = int(text)
+print(f'{num:,}')
+
+a = input()[: : -1]
+print(",".join([a[ i: i + 3] for i in range(0, len(a), 3)])[ : : -1])
+
+
+#########
+num_of_dots = int(input())
+list_of_dots = list()
+for _ in range(num_of_dots):
+    list_of_dots.append(input())
+
+
+
+# Text like '3 4' / '-5 -9'
+# return x, y: 3, 4 / -5, -9
+def str_to_x_y(dots):
+    lst = dots.split()
+    return int(lst[0]), int(lst[1])
+
+def which_quad(x, y):
+    if x == 0 or y == 0:
+        pass    
+    elif x > 0 and y > 0:
+        quad_1 += 1
+    elif x < 0 and y > 0:
+        quad_2 += 1
+    elif x < 0 and y < 0:
+        quad_3 += 1
+    elif x > 0 and y < 0:
+        quad_4 += 1
+
+def main():
+    quad_1 = 0
+    quad_2 = 0
+    quad_3 = 0
+    quad_4 = 0
+    for dots in list_of_dots:
+        x, y = str_to_x_y(dots)
+        if x == 0 or y == 0:
+            pass    
+        elif x > 0 and y > 0:
+            quad_1 += 1
+        elif x < 0 and y > 0:
+            quad_2 += 1
+        elif x < 0 and y < 0:
+            quad_3 += 1
+        elif x > 0 and y < 0:
+            quad_4 += 1
+    print('Первая четверть:', quad_1)
+    print('Вторая четверть:', quad_2)
+    print('Третья четверть:', quad_3)
+    print('Четвертая четверть:', quad_4)
+
+main()
+
+####################
+#num_str = input()
+num_str = '6 5 8 79 8 57 69'
+#list_num = num_str.split()
+list_num = [int(x) for x in num_str.split()]
+print(*list_num)
+temp_num = list_num[0]
+count = 0
+for i in range(1,len(list_num)):
+    if temp_num < list_num[i]:
+        count += 1
+        print('+', temp_num,list_num[i])
+        temp_num = list_num[i]
+    else:
+        print('-', temp_num,list_num[i])
+        temp_num = list_num[i]
+
+print(count)
+######################
+#num_str = input()
+num_str = '6 5 8 79 8 57 69'
+#list_num = num_str.split()
+#list_num = [int(x) for x in num_str.split()]
+list_num = list(map(int, input().split()))
+
+for i in range(len(list_num) // 2):
+    list_num[i*2], list_num[i*2+1] = list_num[i*2+1], list_num[i*2]
+
+print(*list_num)
+#######################
