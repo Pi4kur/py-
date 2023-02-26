@@ -448,4 +448,75 @@ for i in range(len(list_num) // 2):
     list_num[i*2], list_num[i*2+1] = list_num[i*2+1], list_num[i*2]
 
 print(*list_num)
+
 #######################
+# put your python code here
+num_list = input().split() 
+print(num_list[-1], *num_list[:-1])
+
+#############
+num = int(input())
+num_list = list()
+for i in range(num):
+    num_list.append(int(input()))
+num_to_proof = int(input())
+flag = False
+for i in range(len(num_list)):
+    for j in range(i+1, len(num_list)):
+        if num_to_proof == num_list[i] * num_list[j]:
+            flag = True
+            break
+    if flag:
+        break
+print("ДА") if flag else print('НЕТ')
+
+################
+text = '0000a0000n00t00000o000000n'
+
+def anton_in(txt):
+    stage_a = False
+    stage_n = False
+    stage_t = False
+    stage_o = False
+    stage_2n = False
+    for c in txt:
+        if c == 'a':
+            stage_a = True
+            print('a gefunden')
+        elif c == 'n' and stage_a and not stage_o:
+            stage_n = True
+            print('n nach a gefunden')
+        elif c == 't' and stage_a and stage_n:
+            stage_t = True
+            print('t nach n gefunden')
+        elif c == 'o' and stage_a and stage_n and stage_t:
+            stage_o = True
+            print('o gefunden')
+        elif c == 'n' and stage_a and stage_n and stage_t and stage_o:
+            stage_2n = True
+            print('2. n gefunden')
+    if stage_a and stage_n and stage_t and stage_o and stage_2n:
+        return True
+    else:
+        return False
+
+print(anton_in(text))
+
+for i in range(num):
+    if anton_in(input()):
+        print(i, end=' ')
+
+
+###########################
+string = input() + ' запретил букву'
+alpha = ['а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р', 'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ы', 'ь', 'э', 'ю', 'я']
+
+for c in alpha:
+    if len(string.strip()) != 0:
+        if c in string:
+            print(string.strip(), c)
+            string = string.replace(c,'')
+            string = string.replace('  ',' ')
+    else:
+        break
+            
