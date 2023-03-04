@@ -1,14 +1,24 @@
-new_dict = dict()
-new_dict.update({1 : 2})
-new_dict.update({3 : 5})
-new_dict.update({4 : 7})
-print(new_dict)
-new_dict.update({2: None})
-print(new_dict)
-new_dict.update({2: 9})
-print(new_dict)
-x = new_dict.popitem()
-print(new_dict)
-print(x)
+n = int(input())
 
+matrix = list()
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+flag = True
+for i in range(n):
+    for j in range(i+1,n):
+        if matrix[i][j] != matrix[j][i]:
+            flag = False
+            break
+    if not flag:
+        break
+
+print('YES') if flag else print('NO')
 

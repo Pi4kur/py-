@@ -86,3 +86,78 @@ def print_matrix(matrix, n, width=1):
         for c in range(n):
             print(str(matrix[r][c]).ljust(width), end=' ')
         print()
+
+############################
+
+import sys
+
+n = int(input())
+matrix = list()
+for _ in range(n):
+    matrix.append([int(x) for x in input().split()])
+up, right, bot, left = 0, 0, 0, 0
+
+for i in range(n):
+    for j in range(n):
+        if i > j and i < n - j - 1:
+            left += matrix[i][j]
+        elif i < j and i > n - j - 1:
+            right += matrix[i][j]
+        elif i < j and i < n - j - 1:
+            up += matrix[i][j]
+        elif i > j and i > n - j - 1:
+            bot += matrix[i][j]
+
+print('Верхняя четверть:', up)
+print('Правая четверть:', right)
+print('Нижняя четверть:', bot)
+print('Левая четверть:', left)
+
+################################
+
+import sys
+
+row, col = int(input()), int(input())
+matrix = list()
+m_a_x = ~sys.maxsize
+for i in range(row):
+    temp = [int(num) for num in input().split()]
+    if max(temp) > m_a_x:
+        m_a_x = max(temp)
+    matrix.append(temp)
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+for i in range(row):
+    for j in range(col):
+        if matrix[i][j] == m_a_x:
+            print(i, j)
+            quit()
+
+################################
+
+row, col = int(input()), int(input())
+matrix = list()
+for i in range(row):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+i, j = input().split()
+for r in matrix:
+    r[i], r[j] = r[j], r[i]
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+print_matrix(matrix, row, col)
+
+#########################
+#
+
