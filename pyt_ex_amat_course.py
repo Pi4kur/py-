@@ -160,4 +160,389 @@ print_matrix(matrix, row, col)
 
 #########################
 #
+n = int(input())
 
+matrix = list()
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+flag = True
+for i in range(n):
+    for j in range(i+1,n):
+        if matrix[i][j] != matrix[j][i]:
+            flag = False
+            break
+    if not flag:
+        break
+
+print('YES') if flag else print('NO')
+
+#########################
+#
+n = int(input())
+
+matrix = list()
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+result_matrix = list()
+
+for i in range(n):
+    temp = [matrix[n - j - 1][i] for j in range(n)]
+    result_matrix.append(temp)
+
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+
+print_matrix(result_matrix, n)
+
+#########################
+#
+# 8 bcs of shach
+pos = input()
+matrix = [['.' for i in range(8)] for j in range(8)]
+
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+def get_pos_from_input(pos):
+    row = 8 - int(pos[1])
+    col = pos[0]
+    if col == 'a':
+        col = 0
+    elif col == 'b':
+        col = 1
+    elif col == 'c':
+        col = 2
+    elif col == 'd':
+        col = 3
+    elif col == 'e':
+        col = 4
+    elif col == 'f':
+        col = 5
+    elif col == 'g':
+        col = 6
+    elif col == 'h':
+        col = 7
+    return row, col
+
+
+row, col = get_pos_from_input(pos)
+matrix[row][col] = 'N'
+
+# XXX kak ueban? 4.5.vorlast
+# jump with knight
+for _ in range(8):
+    if col + 2 < 8:
+        if row + 1 < 8:
+            matrix[row + 1][col + 2] = '*'
+        if row - 1 >= 0:
+            matrix[row - 1][col + 2] = '*'
+    if col - 2 >= 0:
+        if row + 1 < 8:
+            matrix[row + 1][col - 2] = '*'
+        if row - 1 >= 0:
+            matrix[row - 1][col - 2] = '*'
+    if col + 1 < 8:
+        if row + 2 < 8:
+            matrix[row + 2][col + 1] = '*'
+        if row - 2 >= 0:
+            matrix[row - 2][col + 1] = '*'
+    if col - 1 >= 0:
+        if row + 2 < 8:
+            matrix[row + 2][col - 1] = '*'
+        if row - 2 >= 0:
+            matrix[row - 2][col - 1] = '*'
+
+
+print_matrix(matrix, 8)
+
+#########################
+#
+n = int(input())
+num_to_proof = None
+matrix = list()
+
+def initialize():
+    for i in range(n):
+        temp = [int(num) for num in input().split()]
+        matrix.append(temp)
+
+    num_to_proof = sum(matrix[0])
+
+def from_1_to_n2(n):
+    flag = False
+    for i in range(1, (n ** 2) + 1):
+        flag = False
+        print('For i:', i)
+        for lst in matrix:
+            if i in lst:
+                flag = True
+                print(i, 'in', lst)
+                break
+        if not flag:
+            break
+    print('From 1 to n2', flag)
+    return flag
+
+
+def proof_row(num_to_proof):
+    for i in range(n):
+        temp_sum = None
+        for j in range(n):
+            if temp_sum is None:
+                temp_sum = matrix[i][j]
+            else:
+                temp_sum += matrix[i][j]
+        if temp_sum!= num_to_proof:
+            return False    
+    return True
+
+def proof_col(num_to_proof):
+    for i in range(n):
+        temp_sum = None
+        for j in range(n):
+            if temp_sum is None:
+                temp_sum = matrix[j][i]
+            else:
+                temp_sum += matrix[j][i]
+        if temp_sum!= num_to_proof:
+            return False
+    return True
+
+def proof_diag(num_to_proof):
+    temp_sum = None
+    for i in range(n):
+        if temp_sum is None:
+            temp_sum = matrix[i][i]
+        else:
+            temp_sum += matrix[i][i]
+    if temp_sum!= num_to_proof:
+        return False
+    return True
+
+def proof_adiag(num_to_proof):
+    temp_sum = None
+    for i in range(n):
+        if temp_sum is None:
+            temp_sum = matrix[n-i-1][n-i-1]
+        else:
+            temp_sum += matrix[n-i-1][n-i-1]
+    if temp_sum!= num_to_proof:
+        return False
+    return True
+
+if proof_row(num_to_proof) and proof_col(num_to_proof) and proof_diag(num_to_proof) and proof_adiag(num_to_proof) and from_1_to_n2(n):
+    print("YES")
+else:
+    print("NO")
+
+initialize()
+print(from_1_to_n2(n))
+
+#########################
+#
+row, col = map(int, input().split())
+matrix = [['.' for i in range(col)] for j in range(row)]
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+        
+#for 0, 2, 4, ... rows -> stars at 1, 3, 5, ...
+for i in range(0,row,2):
+    for j in range(1,col,2):
+        matrix[i][j] = '*'
+        
+# for 1, 3, 5, ... rows -> stars at 0, 2, 4, ...
+for i in range(1,row,2):
+    for j in range(0,col,2):
+        matrix[i][j] = '*'
+        
+        
+print_matrix(matrix, row, col)
+
+#########################
+#
+n = int(input())
+matrix = [[0 for i in range(n)] for j in range(n)]
+
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+for i in range(n):
+    matrix[i][n-i-1] = 1
+
+for i in range(n):
+    for j in range(n):
+        if i > n - j - 1:
+            matrix[i][j] = 2
+            
+print_matrix(matrix, n)
+
+#########################
+#
+row, col = map(int, input().split())
+matrix = [[2 for i in range(col)] for j in range(row)]
+
+num = 1
+for j in range(col):
+    for i in range(row):
+        matrix[i][j] = num
+        num += 1
+        
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+        
+print_matrix(matrix, row, col, 3)
+
+#########################
+#
+n = int(input())
+matrix = [[0 for _ in range(n)] for _ in range(n)]
+
+for i in range(n):
+    for j in range(n):
+        if i <= j and i <= n - j - 1 or i >= j and i >= n - j - 1:
+            matrix[i][j] = 1
+        
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+        
+print_matrix(matrix, n, 3)
+
+#########################
+#
+row, col = map(int, input().split())
+matrix = [[1 for _ in range(col)] for _ in range(row)]
+# inizialize logic
+num = 1
+
+direction_x = 1 # -1, 0, 1
+direction_y = 0 # -1, 0, 1
+
+i, j = 0, 0
+
+max_col = col
+max_row = row
+min_col = 0
+min_row = 0
+
+while num <= row * col:
+    # print(num, 'in', i, j)
+    matrix[i][j] = num
+    num += 1
+    if j + direction_x == max_col:
+        # print('change from L R to U D')
+        direction_x = 0
+        direction_y = 1
+        min_row += 1
+    elif i + direction_y == max_row:
+        # print('change from U D to R L')
+        direction_x = -1
+        direction_y = 0
+        max_col -= 1
+    elif j + direction_x < min_col:
+        # print('change from R L to D U')
+        direction_x = 0
+        direction_y = -1
+        max_row -= 1
+    elif i + direction_y < min_row:
+        # print('change from D U to L R')
+        direction_x = 1
+        direction_y = 0
+        min_col += 1
+    i += direction_y
+    j += direction_x
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+print_matrix(matrix, row, col, 3)
+
+#########################
+#
+row_1, col_1 = map(int, input().split())
+matrix_1 = []
+for _ in range(row_1):
+    temp = list(map(int, input().split()))
+    matrix_1.append(temp)
+
+input() # divider
+row_2, col_2 = map(int, input().split())
+matrix_2 = []
+for _ in range(row_2):
+    temp = list(map(int, input().split()))
+    matrix_2.append(temp)
+    
+def sum_matrix(matrix_1, matrix_2, row, col):
+    for i in range(row):
+        for j in range(col):
+            matrix_1[i][j] += matrix_2[i][j]
+            
+def mult_matrix(matrix_1, matrix_2, row_1, col_1, col_2): # row_2 == col_1
+    result_mat = [[0 for _ in range(col_2)] for _ in range(row_1)]
+    for i in range(row_1):
+        for j in range(col_2):
+            summ = sum(matrix_1[i][k] * matrix_2[k][j] for k in range(col_1))
+            print(summ)
+            result_mat[i][j] = summ
+    return result_mat
+
+
+
+def print_matrix(matrix, row, col, width=1):
+    for r in range(row):
+        for c in range(col):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+print('################################################################')
+print_matrix(matrix_1, row_1, col_1)
+print('################################################################')
+print_matrix(matrix_2, row_2, col_2)
+print('################################################################')
+
+mat = mult_matrix(matrix_1, matrix_2, row_1, col_1, col_2)
+print_matrix(mat, row_1, col_2)
+
+#########################
+#
+def pow_matrix(matrix, pow_n):
+    temp_mat = matrix.copy()
+    for _ in range(1, pow_n):
+        temp_mat = mult_matrix(temp_mat, matrix, n, n, n)
+    return 
+
+################################
+# Matrix practical examination #
+################################
