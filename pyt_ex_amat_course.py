@@ -546,3 +546,125 @@ def pow_matrix(matrix, pow_n):
 ################################
 # Matrix practical examination #
 ################################
+import sys
+
+n = int(input())
+matrix = []
+for _ in range(n):
+    temp = list(map(int, input().split()))
+    matrix.append(temp)
+m_a_x = ~sys.maxsize
+    
+for i in range(n):
+    for j in range(n):
+        if i >= n - j - 1:
+            if matrix[i][j] > m_a_x:
+                m_a_x = matrix[i][j]
+
+print(m_a_x)
+
+#########################
+
+n = int(input())
+
+matrix = []
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+flag = True
+for i in range(n):
+    for j in range(n):
+        if matrix[i][j] != matrix[n - j - 1][n - i - 1]:
+            flag = False
+            break
+    if not flag:
+        break
+
+print('YES') if flag else print('NO')
+
+#########################
+
+n = int(input())
+
+matrix = []
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+
+
+flag = True
+for num in range(1, n + 1):
+    for i in range(n):
+        if num not in matrix[i]:
+            flag = False
+            break
+        # print([matrix[j][i] for j in range(n)], 'i', i)
+        if num not in [matrix[j][i] for j in range(n)]:
+            flag = False
+            break
+
+print('YES') if flag else print('NO')
+
+#########################
+
+row, col = get_pos_from_input(pos)
+matrix[row][col] = 'Q'
+
+# XXX kak ueban? 4.5.vorlast
+# move queen
+for i in range(8):
+    if matrix[row][i] != 'Q': # for row where queen stand
+        matrix[row][i] = '*'
+    if matrix[i][col] != 'Q': # for col where queen stand
+        matrix[i][col] = '*'
+    if row - i >= 0 and col + i < 8 and matrix[row - i][col + i] != 'Q':
+        matrix[row - i][col + i] = '*'
+    if row - i >= 0 and col - i >= 0 and matrix[row - i][col - i] != 'Q':
+        matrix[row - i][col - i] = '*'
+    if row + i < 8 and col + i < 8 and matrix[row + i][col + i]!= 'Q':
+        matrix[row + i][col + i] = '*'
+    if row + i < 8 and col - i >= 0 and matrix[row + i][col - i]!= 'Q':
+        matrix[row + i][col - i] = '*'
+
+print_matrix(matrix, 8)
+
+#########################
+
+n = int(input())
+
+matrix = [[0 for _ in range(n)] for _ in range(n)]
+for i in range(n):
+    for j in range(n):
+        matrix[i][j] = abs(i - j)
+
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+
+print_matrix(matrix, n)
+
+#########################
+#
+n = int(input())
+
+matrix = []
+for _ in range(n):
+    name, num = input().split()
+    matrix.append((name, int(num)))
+lst = tuple(matrix)
+print(lst)
+
+for tp in lst:
+    print(*tp)
+print()
+for tp in lst:
+    if tp[1] > 3:
+        print(*tp)
+
+#########################
+
+
