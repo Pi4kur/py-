@@ -198,3 +198,13 @@ for i in range(n):                     # заполняем главную ди�
 
 !!! Кортежи не поддерживают такие методы, как append(), remove(), pop(), insert(), reverse(), sort(), так как они изменяют содержимое.
 
+Тема урока: методы множеств
+
+Методы union(), intersection(), difference(), symmetric_difference()
+
+Методы update(), intersection_update(), difference_update(), symmetric_difference_update()
+
+Операторы &, |, -, ^
+
+Методы issuperset(), issubset(), isdisjoint()
+Сравнение множеств (<, >, <=, >=)

@@ -666,5 +666,27 @@ for tp in lst:
         print(*tp)
 
 #########################
+# HOLY SHIT
+n, m, k, x, y, z, t, a = int(input()), int(input()), int(input()), int(input()), int(input()), int(input()), int(input()), int(input())
 
+n_and_m = m + n - x - t
+n_and_k = n + k - z - t
+m_and_k = m + k - y - t
+only_n = n - t - n_and_m - n_and_k
+only_m = m - t - n_and_m - m_and_k
+only_k = k - t - n_and_k - m_and_k
+print(only_k + only_m + only_n)
+print(n_and_m + n_and_k + m_and_k)
+print(a - (t + n_and_m + n_and_k + m_and_k + only_k + only_m + only_n))
+
+
+n = int(input())
+myset = {int(x) for x in input()}
+for _ in range(n - 1):
+    temp = {int(x) for x in input()}
+    # print(temp)
+    myset &= temp
+    # print(myset)
+
+print(*sorted(myset))
 
