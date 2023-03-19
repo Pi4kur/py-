@@ -690,3 +690,120 @@ for _ in range(n - 1):
 
 print(*sorted(myset))
 
+#########################
+set1 = {int(x) for x in input().split()}
+set2 = {int(x) for x in input().split()}
+set3 = {int(x) for x in input().split()}
+
+set4 = (set1 | set2) - set3
+set5 = (set1 | set3) - set2
+set6 = (set2 | set3) - set1
+
+print(*sorted(set4 | set5 | set6))
+
+sentence = ''
+{word.strip(':,.!?();').lower() for word in sentence.split() if len(word.strip(':,.!?();').lower()) < 4}
+files = []
+
+
+{file.lower() for file in files if file[-4:].lower() == '.png'}
+
+#########################
+# Exam sets #############
+# 18.03
+m = int(input())
+result_set = None
+for _ in range(m):
+    num = int(input())
+    myset = {input() for _ in range(num)}
+    if result_set is None:
+        result_set = myset
+    else:
+        result_set &= myset
+
+print(*sorted(result_set), sep='\n')
+
+#########################
+# Dictionary ############
+users = [{'name': 'Todd', 'phone': '551-1414', 'email': 'todd@gmail.com'},
+         {'name': 'Helga', 'phone': '555-1618'},
+         {'name': 'Olivia', 'phone': '449-3141', 'email': ''},
+         {'name': 'LJ', 'phone': '555-2718', 'email': 'lj@gmail.net'},
+         {'name': 'Ruslan', 'phone': '422-145-9098', 'email': 'rus-lan.cha@yandex.ru'},
+         {'name': 'John', 'phone': '233-421-32', 'email': ''},
+         {'name': 'Lara', 'phone': '+7998-676-2532', 'email': 'g.lara89@gmail.com'},
+         {'name': 'Alina', 'phone': '+7948-799-2434'},
+         {'name': 'Robert', 'phone': '420-2011', 'email': ''},
+         {'name': 'Riyad', 'phone': '128-8890-128', 'email': 'r.mahrez@mail.net'},
+         {'name': 'Khabib', 'phone': '+7995-600-9080', 'email': 'kh.nurmag@gmail.com'},
+         {'name': 'Olga', 'phone': '6449-314-1213', 'email': ''},
+         {'name': 'Roman', 'phone': '+7459-145-8059'},
+         {'name': 'Maria', 'phone': '12-129-3148', 'email': 'm.sharapova@gmail.com'},
+         {'name': 'Fedor', 'phone': '+7445-341-0545', 'email': ''},
+         {'name': 'Tim', 'phone': '242-449-3141', 'email': 'timm.ggg@yandex.ru'}]
+names = tuple()
+
+for user in users:
+    if user['email'] == '' or 'email' not in user:
+        names += (user['name'],)
+
+print(*sorted(names))
+
+#########################
+#
+d = {
+    0: "zero",
+    1: "one",
+    2: "two",
+    3: "three",
+    4: "four",
+    5: "five",
+    6: "six",
+    7: "seven",
+    8: "eight",
+    9: "nine"
+}
+n = int(input())
+tupl = ()
+while n > 0:
+    digit = n % 10
+    n //= 10
+    tupl += d[digit],
+print(*reversed(tupl))
+
+########################
+#
+d = {
+    1 : '.,?!:',
+    2: 'ABC',
+    3: 'DEF',
+    4: 'GHI',
+    5: 'JKL',
+    6: 'MNO',
+    7: 'PQRS',
+    8: 'TUV',
+    9: 'WXYZ',
+    0: ' '
+}
+string = input().upper()
+for c in string:
+    for a, b in d.items():
+        if c in b:
+            index = b.index(c) + 1
+            print(str(a) * index, end='')
+            break
+
+#########################
+#
+letters = list('ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789')
+morse = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
+
+string = input('Enter a string: ').upper()
+
+for c in string:
+    if c in letters:
+        index = letters.index(c)
+        print(morse[index], end=' ')
+
+#########################
+#
