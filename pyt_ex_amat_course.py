@@ -1087,4 +1087,95 @@ while len(lst) < 7:
         lst.append(num)
 print(*sorted(lst))
 ################################################################
+import random
+import string
 
+def generate_ip():
+    return '.'.join([str(random.randrange(256)) for _ in range(4)])
+
+upper = string.ascii_uppercase
+
+def generate_index():
+    index = random.choice(upper)
+    index += random.choice(upper)
+    index += f'{random.randrange(100)}_'
+    index += str(random.randrange(100))
+    index += random.choice(upper)
+    index += random.choice(upper)
+    return index
+
+import random
+matrix = []
+lst = []
+while len(lst) < 25:
+    num = random.randint(1, 75)
+    if num not in lst:
+        lst.append(num)
+
+for i in range(5):
+    temp = lst[i*5:i*5 + 5]
+    matrix.append(temp)
+    
+matrix[2][2] = 0
+
+def print_matrix(matrix, n, width=1):
+    for r in range(n):
+        for c in range(n):
+            print(str(matrix[r][c]).ljust(width), end=' ')
+        print()
+
+print_matrix(matrix, 5, 3)
+
+########################################################################
+import string
+import random
+
+BAD_CHARS = 'lI1oO0'
+
+LET_AND_DIG = string.ascii_letters + string.digits
+
+n, m = int(input()), int(input())
+
+def validate_password(password):
+    lower_in = False
+    upper_in = False
+    digit_in = False
+    for c in password:
+        if c.isdigit():
+            digit_in = True
+        elif c.islower():
+            lower_in = True
+        elif c.isupper():
+            upper_in = True
+    return lower_in & upper_in & digit_in
+
+def generate_password(length):
+    pw = ''
+    while len(pw) < length:
+        char = random.choice(LET_AND_DIG)
+        if char not in BAD_CHARS:
+            pw += char
+    return pw if validate_password(pw) else generate_password(length)
+
+def generate_passwords(count, length):
+    return [generate_password(length) for _ in range(count)]
+
+print(*generate_passwords(n, m), sep='\n')
+
+################################
+
+import random
+
+n = 10**6
+k = 0
+s0 = 16
+for _ in range(n):
+    x = random.uniform(-2, 2)
+    y = random.uniform(-2, 2)
+
+    if x**2 + y**2 <= 1:
+        k += 1
+
+print((k/n)*s0)
+
+################################################################

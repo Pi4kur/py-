@@ -187,7 +187,7 @@ for i in range(n):                     # заполняем главную ди�
 Особенности кортежей
 Кортежи поддерживают те же операции, что и списки, за исключением изменяющих содержимое.
 
-Кортежи поддерживают:
+Кортежи(tuple(s)) поддерживают:
 
 доступ к элементу по индексу (только для получения значений элементов);
 методы, в частности index(), count();
@@ -287,3 +287,18 @@ normalvariate()	    Returns a random float number based on the normal distributi
 vonmisesvariate()	Returns a random float number based on the von Mises distribution (used in directional statistics)
 paretovariate()	    Returns a random float number based on the Pareto distribution (used in probability theories)
 weibullvariate()	Returns a random float number based on the Weibull distribution (used in statistics)
+https://docs.python.org/3/library/random.html#
+
+****************************************************************
+
+import string
+
+print(string.ascii_letters)     abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_uppercase)   ABCDEFGHIJKLMNOPQRSTUVWXYZ
+print(string.ascii_lowercase)   abcdefghijklmnopqrstuvwxyz
+print(string.digits)            0123456789
+print(string.hexdigits)         0123456789abcdefABCDEF
+print(string.octdigits)         01234567
+print(string.punctuation)       !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
+print(string.printable)         0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ \t\n\r\x0b\x0c
+
