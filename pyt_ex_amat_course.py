@@ -1179,3 +1179,398 @@ for _ in range(n):
 print((k/n)*s0)
 
 ################################################################
+
+from fractions import Fraction as F
+from math import gcd as gcd
+
+n = int(input())
+lst = []
+for chis in range(1, n // 2 + n % 2):
+    znam = n - chis
+    print(chis, znam, ':', gcd(chis, znam))
+    if chis >= znam:
+        break
+    if gcd(chis, znam) == 1:
+        lst.append(F(chis, znam))
+
+print(max(lst))
+
+################################################################
+
+from fractions import Fraction as F
+from math import gcd as gcd
+
+n = int(input())
+lst = []
+for chis in range(1, n):
+    lst.extend(
+        F(chis, znam) for znam in range(n, chis, -1) if gcd(chis, znam) == 1
+    )
+
+print(*sorted(lst), sep='\n')
+
+################################################################
+# SHORTER SOLUTION
+from fractions import Fraction as F
+from math import gcd as gcd
+
+n = int(input())
+lst = []
+
+lst.extend(
+    F(chis, znam) for chis in range(1, n) for znam in range(n, chis, -1) if gcd(chis, znam) == 1
+)
+
+print(*sorted(lst), sep='\n')
+
+################################################################
+import turtle as t
+
+def draw_line(size):
+    t.backward(size // 2)
+    t.forward(size)
+    t.backward(size // 2)
+
+def result(size):
+    for _ in range(6):
+        draw_line(size)
+        t.left(30)
+
+result(200)
+
+def draw_star(size):
+    t.forward(size // 2)
+    t.right(144)
+    t.forward(size)
+    t.right(144)
+    t.forward(size)
+    t.right(144)
+    t.forward(size)
+    t.right(144)
+    t.forward(size)
+    t.right(144)
+    t.forward(size // 2)
+
+
+import turtle
+
+turtle.Screen().setup(400, 400)               # устанавливаем размер граф. окна
+turtle.Screen().addshape('rocketship.png')    # добавляем форму черепашки
+
+turtle.Screen().bgpic('space.jpg')            # устанавливаем фоновое изображение
+turtle.shape('rocketship.png')                # устанавливаем форму черепашки
+turtle.pencolor('green')
+turtle.pensize(5)
+
+for _ in range(4):
+    turtle.forward(150)
+    turtle.left(90)
+
+################################################################
+from turtle import dot as d, forward as f, left as l
+[[d(10), f(s), l(90)] for s in (150, 75) * 2]
+
+################################################################
+import turtle
+from random import randrange
+
+def move_turtles(turtles, dist, angle):
+    for turtle in turtles:    # все черепашки из списка делают одни и те же действия
+        turtle.forward(dist)
+        turtle.right(angle)
+
+
+turtles = []                   # список черепашек
+head = 0
+num_turtles = 10               # количество череашек
+for i in range(num_turtles):
+    turt = turtle.Turtle()     # создаем черепашку и устанавливаем ее свойства
+    turt.setheading(head)
+    turt.pensize(2)
+    turt.color(randrange(256), randrange(256), randrange(256))
+    turt.speed(5)
+    turt.tracer(25, 0)
+    turtles.append(turt)       # добавляем черепашку в список
+    head = head + 360/num_turtles
+
+for i in range(70):
+    move_turtles(turtles, 10, i)
+
+################################################################
+# Changes since Python 2.6 The methods Turtle.tracer(), Turtle.window_width() and Turtle.window_height() have been eliminated. Methods with these names and functionality are now available only as methods of Screen.
+################################################################
+import turtle
+from random import randrange
+
+
+screen = turtle.Screen()
+screen.colormode(255)
+screen.tracer(0)
+
+def move_turtles(turtles, dist, angle):
+    for turtle in turtles:    # все черепашки из списка делают одни и те же действия
+        turtle.forward(dist)
+        turtle.right(angle)
+
+
+turtles = []                   # список черепашек
+head = 0
+num_turtles = 10               # количество череашек
+for i in range(num_turtles):
+    turt = turtle.Turtle()     # создаем черепашку и устанавливаем ее свойства
+    turt.setheading(head)
+    turt.pensize(2)
+    turt.color(randrange(256), randrange(256), randrange(256))
+    turt.speed(5)
+    turtles.append(turt)       # добавляем черепашку в список
+    head = head + 360/num_turtles
+
+for i in range(70):
+    move_turtles(turtles, 10, i)
+
+turtle.mainloop()
+
+################################################################
+
+from turtle import *
+bgcolor('darkblue'), penup(), speed(0)  # Настройка основных значений
+dot(200, 'gold3'), forward(200)  # Рисование луны
+shape('circle'), shapesize(10), color('darkblue')  # Настройка вида черепашки
+while True:  # Цикл прохода черепашки справа налево
+    for _ in range(400):
+        backward(1)
+    forward(400)
+
+################################################################
+
+def matrix(row=1, col=None, value=0):
+    if col is None:
+        col = row
+    return [[value for _ in range(col)] for _ in range(row)]
+
+################################################################
+
+from math import sin
+n = int(input())
+func = input()
+
+func_dict = {
+    'квадрат': lambda x: x ** 2,
+    'куб': lambda x: x ** 3,
+    'корень': lambda x: x ** 0.5,
+    'модуль': abs,
+    'синус': sin
+    }
+
+print(func_dict[func](n))
+
+################################################################
+
+# put your python code here
+numbers = input().split()
+
+lst = [list(map(int, list(x))) for x in numbers]
+dict_of_digit = dict(zip(numbers, lst))
+
+def comparer(dic):
+    return sum(dic[1])
+
+my_dict = dict(sorted(dict_of_digit.items(), key=comparer))
+
+print(*my_dict.keys())
+
+# second solution in 1 line
+# !!!!!!!!!!!!!!!!!!!!!!!!!
+
+print(*sorted(input().split(), key=lambda x: sum(map(int, x))))
+
+################################################################
+
+print(*sorted(sorted(input().split(), key=lambda n: int(n)), key=lambda x: sum(map(int, x))))
+
+################################################################
+
+def map(function, items):
+    return [function(item) for item in items]
+
+numbers = [3.56773, 5.57668, 4.00914, 56.24241, 9.01344, 32.12013, 23.22222, 90.09873, 45.45, 314.1528, 2.71828, 1.41546]
+
+n_num = map(lambda x: round(x,2), numbers)
+
+print(*n_num, sep='\n')
+
+################################################################
+
+def map(function, items):
+    result = []
+    for item in items:
+        result.append(function(item))
+    return result
+
+
+def filter(function, items):
+    result = []
+    for item in items:
+        if function(item):
+            result.append(item)
+    return result
+
+
+numbers = [1014, 1321, 675, 1215, 56, 1386, 1385, 431, 1058, 486, 1434, 696, 1016, 1084, 424, 1189, 475, 95, 1434, 1462, 815, 776, 657, 1225, 912, 537, 1478, 1176, 544, 488, 668, 944, 207, 266, 1309, 1027, 257, 1374, 1289, 1155, 230, 866, 708, 144, 1434, 1163, 345, 394, 560, 338, 232, 182, 1438, 1127, 928, 1309, 98, 530, 1013, 898, 669, 105, 130, 1363, 947, 72, 1278, 166, 904, 349, 831, 1207, 1496, 370, 725, 926, 175, 959, 1282, 336, 1268, 351, 1439, 186, 273, 1008, 231, 138, 142, 433, 456, 1268, 1018, 1274, 387, 120, 340, 963, 832, 1127]
+
+def ex_filt(num):
+    return 99 < num < 1000 and num % 5 == 2
+
+def cube(num):
+    return num ** 3
+
+nums = map(cube, filter(ex_filt, numbers))
+
+print(*nums, sep='\n')
+
+################################################################
+
+def reduce(operation, items, initial_value):
+    acc = initial_value
+    for item in items:
+        acc = operation(acc, item)
+    return acc
+
+def map(function, items):
+    return [function(item) for item in items]
+
+nums_map = sum(map(lambda x: x ** 2, numbers))
+
+
+numbers = [97, 42, 9, 32, 3, 45, 31, 77, -1, 11, -2, 75, 5, 51, 34, 28, 46, 1, -8, 84, 16, 51, 90, 56, 65, 90, 23, 35, 11, -10, 70, 90, 90, 12, 96, 58, -8, -4, 91, 76, 94, 60, 72, 43, 4, -6, -5, 51, 58, 60, 30, 38, 67, 62, 36, 72, 34, 82, 62, -1, 60, 82, 87, 81, -7, 57, 26, 36, 17, 43, 80, 40, 75, 94, 91, 64, 38, 72, 29, 84, 38, 35, 7, 54, 31, 95, 78, 27, 82, 1, 64, 94, 31, 29, -8, 98, 24, 61, 7, 73]
+
+def add_sqr(x, y):
+    return x + y ** 2
+
+nums_red = reduce(add_sqr, numbers, 0)
+
+print(nums_red)
+print(nums_map)
+
+################################################################
+
+# Напишите программу для вычисления и вывода суммы квадратов двузначных чисел, которые делятся на 7 без остатка.
+
+def map(function, items):
+    result = []
+    for item in items:
+        result.append(function(item))
+    return result
+
+
+def filter(function, items):
+    result = []
+    for item in items:
+        if function(item):
+            result.append(item)
+    return result
+
+
+numbers = [77, 293, 28, 242, 213, 285, 71, 286, 144, 276, 61, 298, 280, 214, 156, 227, 228, 51, -4, 202, 58, 99, 270, 219, 94, 253, 53, 235, 9, 158, 49, 183, 166, 205, 183, 266, 180, 6, 279, 200, 208, 231, 178, 201, 260, -35, 152, 115, 79, 284, 181, 92, 286, 98, 271, 259, 258, 196, -8, 43, 2, 128, 143, 43, 297, 229, 60, 254, -9, 5, 187, 220, -8, 111, 285, 5, 263, 187, 192, -9, 268, -9, 23, 71, 135, 7, -161, 65, 135, 29, 148, 242, 33, 35, 211, 5, 161, 46, 159, 23, 169, 23, 172, 184, -7, 228, 129, 274, 73, 197, 272, 54, 278, 26, 280, 13, 171, 2, 79, -2, 183, 10, 236, 276, 4, 29, -10, 41, 269, 94, 279, 129, 39, 92, -63, 263, 219, 57, 18, 236, 291, 234, 10, 250, 0, 64, 172, 216, 30, 15, 229, 205, 123, -105]
+
+def ex_filter(num):
+    return len(str(abs(num))) == 2 and num % 7 == 0
+
+nums = sum(map(lambda x: x ** 2, filter(ex_filter, numbers)))
+print(nums)
+
+################################################################
+
+from functools import reduce
+
+data = [['Tokyo', 35676000, 'primary'],
+        ['New York', 19354922, 'nan'],
+        ['Mexico City', 19028000, 'primary'],
+        ['Mumbai', 18978000, 'admin'],
+        ['Sao Paulo', 18845000, 'admin'],
+        ['Delhi', 15926000, 'admin'],
+        ['Shanghai', 14987000, 'admin'],
+        ['Kolkata', 14787000, 'admin'],
+        ['Los Angeles', 12815475, 'nan'],
+        ['Dhaka', 12797394, 'primary'],
+        ['Buenos Aires', 12795000, 'primary'],
+        ['Karachi', 12130000, 'admin'],
+        ['Cairo', 11893000, 'primary'],
+        ['Rio de Janeiro', 11748000, 'admin'],
+        ['Osaka', 11294000, 'admin'],
+        ['Beijing', 11106000, 'primary'],
+        ['Manila', 11100000, 'primary'],
+        ['Moscow', 10452000, 'primary'],
+        ['Istanbul', 10061000, 'admin'],
+        ['Paris', 9904000, 'primary']]
+
+test_lst = list(sorted((map(lambda lst: lst[0], 
+                        filter(lambda lst: lst[1] > 10000000 and lst[2] == 'primary', data)))))
+
+print(reduce(lambda x, y: f'{x}, {y}', test_lst[1:], f'Cities: {test_lst[0]}'))
+
+################################################################
+
+is_num = (
+    lambda x: x.replace('-', '', 1).replace('.', '', 1).isdigit()
+    if x.startwith('-')
+    else x.replace('.', '', 1).isdigit()
+)
+
+################################################################
+
+data = [(19542209, 'New York'), (4887871, 'Alabama'), (1420491, 'Hawaii'), (626299, 'Vermont'), (1805832, 'West Virginia'), (39865590, 'California'), (11799448, 'Ohio'), (10711908, 'Georgia'), (10077331, 'Michigan'), (10439388, 'Virginia'), (7705281, 'Washington'), (7151502, 'Arizona'), (7029917, 'Massachusetts'), (6910840, 'Tennessee')]
+sort_data = sorted(data, key=lambda x: x[1][-1], reverse=True)
+print(*(f'{x[1]}: {x[0]}' for x in sort_data), sep='\n')
+
+################################################################
+
+mixed_list = ['a', 'ab', 3, 5, 1, 8, 0, 'c', 'ac', 'aab']
+
+print(*sorted(mixed_list, key=lambda x: (type(x) == str, x)))
+# 0 1 3 5 8 a aab ab ac c
+
+################################################################
+
+from functools import reduce
+coeff = [int(x) for x in input().split()]
+x = int(input())
+
+def evaluate(coefficients, x):
+    return reduce(lambda k, i: k + i, 
+                  map(lambda l, m: l * x ** m, coefficients, list(range(len(coefficients) - 1, -1, -1))))
+
+print(evaluate(coeff, x))
+
+################################################################
+
+countries = ['Russia', 'USA', 'UK', 'Germany', 'France', 'India']
+capitals = ['Moscow', 'Washington', 'London', 'Berlin', 'Paris', 'Delhi']
+population = [145_934_462, 331_002_651, 80_345_321, 67_886_011, 65_273_511, 1_380_004_385]
+
+print(*(f'{a} is the capital of {b}, population equal {c} people.' for a, b, c in zip(capitals, countries, population)), sep='\n')
+
+################################################################
+
+lst = list(input().split('.'))
+
+print(all(map(lambda x: x.isdigit() and int(x) in range(256), lst))) # int(x) in range(256)
+
+################################################################
+
+a, b = int(input()), int(input())
+
+def valuate(num):
+    return all(map(lambda x: int(x) and num % int(x) == 0, set(str(num))))
+
+print(*filter(lambda num: valuate(num), range(a, b + 1)))
+
+################################################################
+
+
+################################################################
+
+
+
+################################################################
+

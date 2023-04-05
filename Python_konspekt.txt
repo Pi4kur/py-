@@ -302,3 +302,35 @@ print(string.octdigits)         01234567
 print(string.punctuation)       !"#$%&'()*+,-./:;<=>?@[\]^_`{|}~
 print(string.printable)         0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~ \t\n\r\x0b\x0c
 
+Модуль turtle
+
+turtle.showturtle()
+turtle.forward(100)
+turtle.backward(n)
+turtle.right(angle)
+turtle.left(angle)
+
+turtle.setheading(90)
+turtle.heading()
+
+turtle.shape('square')
+    square (квадрат);
+    arrow (стрелка);
+    circle (круг);
+    turtle (черепашка);
+    triangle (треугольник);
+    classic (классическая стрелка). 
+
+turtle.Screen().addshape('rocketship.gif')  # регистрируем изображение
+turtle.shape('rocketship.gif')              # устанавливаем изображение
+################################################################
+import turtle
+
+turtle.Screen().setup(400, 400)               # устанавливаем размер граф. окна
+turtle.Screen().addshape('rocketship.png')    # добавляем форму черепашки
+
+turtle.Screen().bgpic('space.jpg')            # устанавливаем фоновое изображение
+turtle.shape('rocketship.png')                # устанавливаем форму черепашки
+turtle.pencolor('green')
+turtle.pensize(5)
+################################################################
