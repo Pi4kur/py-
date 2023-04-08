@@ -1566,6 +1566,106 @@ def valuate(num):
 print(*filter(lambda num: valuate(num), range(a, b + 1)))
 
 ################################################################
+pw = input()
+
+print('YES') if len(pw)> 6 and any(map(lambda x: x.islower(), pw)) and any(map(lambda x: x.isdigit(), pw)) and any(map(lambda x: x.isupper(), pw)) else print('NO')
+
+################################################################
+
+num_classes = int(input())
+all_classes = []
+for _ in range(num_classes):
+    num_stud = int(input())
+    clas_s = tuple(input().split()[1] == '5' for _ in range(num_stud))
+    all_classes.append(clas_s)
+
+print('YES') if all(map(any, all_classes)) else print('NO')
+
+
+# all(map(lambda x: any(map(lambda x: x[1] == '5', x))
+
+################################################################
+# FILES
+name = input()
+with open(name, encoding='utf-8') as file:
+    lst = file.readlines()
+print(lst[-2])
+
+################################################################
+
+with open('prices.txt', encoding='utf-8') as file:
+    lst = list(map(lambda x: x.rstrip().split('\t'), file.readlines()))
+
+print(sum(map(lambda x: int(x[1]) * int(x[2]), lst)))
+
+################################################################
+
+with open('data.txt', encoding='utf-8') as file:
+    lst_str = [x.strip() for x in file.readlines()]
+    print(*iter(lst_str[::-1]), sep='\n')
+    file.seek(0)
+    lst_str_2 = file.readlines()
+    print(*lst_str_2[::-1], sep='')
+
+################################################################
+
+def sum_line(line):
+    return sum(int(x) for x in line.split())
+
+with open('numbers.txt', encoding='utf-8') as file:
+    print(*map(sum_line, file.readlines()), sep='\n')
+
+################################################################
+
+with open('data.txt', encoding='utf-8') as file:
+    text = file.read()
+    letters = len([x for x in text if x.isalpha()])
+    words = len(text.split())
+    lines = text.count('\n') + 1
+    
+    print('Input file contains:')
+    print(letters, 'letters')
+    print(words, 'words')
+    print(lines, 'lines')
+
+################################################################
+
+with open('population.txt', encoding='utf-8') as file:
+    text_lst = file.readlines()
+    my_lst = [x.split('\t') for x in text_lst]
+    print(my_lst)
+    print(*map(lambda x: x[0], filter(lambda x: x[0].startswith('G') and int(x[1].strip()) > 500_000, my_lst)), sep='\n')
+    
+################################################################
+
+def read_csv():
+    with open('data.csv', encoding='utf-8') as file:
+        keys = file.readline().strip().split(',')
+        values_lst = file.readlines()
+        return [dict(zip(keys, values.strip().split(','))) for values in values_lst]
+        # return [dict(zip(keys, values.strip().split(','))) for values in file.readlines()] -> values_lst not needed
+
+print(read_csv())
+
+################################################################
+
+with open('class_scores.txt', 'r', encoding='utf-8') as inputfile:
+    with open('new_scores.txt', 'w', encoding='utf-8') as output:
+        for line in inputfile:
+            a, b = line.split()
+            b = min(int(b.strip()) + 5, 100)
+            output.write(f'{a} {b}\n')
+
+################################################################
+
+
+################################################################
+
+
+################################################################
+
+
+################################################################
 
 
 ################################################################
