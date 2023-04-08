@@ -8,10 +8,7 @@ for i in range(5):
     print('n=', 4, 'm=', i, 'binkof=', n_uber_m(4,i))
 
 def pascal(num):
-    my_list = list()
-    for i in range(num+1):
-        my_list.append(n_uber_m(num,i))
-    return my_list
+    return [n_uber_m(num,i) for i in range(num+1)]
 
 print(*pascal(4))
 
