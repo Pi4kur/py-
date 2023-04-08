@@ -12,17 +12,17 @@ text2 = '[[[][[][]]][]]'
 
 def brackets_index(text):
     count = 0
-    index_dict = dict()
-    temp_list = list()
+    index_dict = {}
+    temp_list = []
 
     for i in range(len(text)):
         if text[i] == '[':
             count += 1
             temp_list.append(i)
-        elif  text[i] == ']':
+        elif text[i] == ']':
             count -= 1
-            index_dict.update({temp_list.pop(): i})
-    
+            index_dict[temp_list.pop()] = i
+
     if count == 0:
         print('valid')
     else:
